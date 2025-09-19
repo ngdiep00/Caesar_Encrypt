@@ -1,10 +1,11 @@
 def encrypt_with_stt(plaintext):
-    plaintext = plaintext.upper()  # Chuyển hết sang chữ hoa
+    plaintext = plaintext.upper()  # chuẩn hóa về chữ hoa
     ciphertext = ""
     for i, ch in enumerate(plaintext, start=1):
+        k = i   
         if ch.isalpha():
             p = ord(ch) - ord('A')
-            c = (p + i) % 26
+            c = (p + k) % 26
             ciphertext += chr(c + ord('A'))
         else:
             ciphertext += ch
@@ -13,9 +14,10 @@ def encrypt_with_stt(plaintext):
 def decrypt_with_stt(ciphertext):
     plaintext = ""
     for i, ch in enumerate(ciphertext, start=1):
+        k = i 
         if ch.isalpha():
             c = ord(ch) - ord('A')
-            p = (c - i) % 26
+            p = (c - k) % 26
             plaintext += chr(p + ord('A'))
         else:
             plaintext += ch
